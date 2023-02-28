@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* //! header part */
+
+.header{
+  display: flex;
+  justify-content: space-between;
+  margin:2rem;
+}
+
+
+.button{
+    font-size: 25px;
+    background-color: white;
+    border-radius: 10px;
+    color: white;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    margin-right: 2rem;
+}
+
+/* //! container part */
+.container{
+  display: flex;
+  padding: 0 10px;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  
+}
+
+/* //! card part */
+
+.card{
+    display: flex;
+    min-width: 1000px;
+    max-width: 300px;
+    height: 200px;
+    margin: 10px;
+    color: black;
+    background-color:rgb(233, 233, 239);
+    border-radius: 10px;
+    align-items: center;
+}
+.img{
+  margin:10px;
+  
+}
+.img img{
+  border-radius: 5px;
+  height: 150px;
+
+}
+
+.title{
+  margin-bottom: 1.5rem;
+  font-size: smaller;
+}
+
+.identity{
+  margin-top: 2rem;
+  display: flex;
+  justify-content:space-between;
+}
+.link{
+  margin-right: 2rem;
+  
+}
+.adiv{
+  margin-top: 1rem;
+} 
+
+
+
+
+
+
