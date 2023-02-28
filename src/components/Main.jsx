@@ -1,35 +1,41 @@
 import React, { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
-import { RxDotFilled } from 'react-icons/rx';
 import data from "../helper/data";
 
 const Main = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
+
+  const [slideIndex, setSlideIndex] = useState(1)
+ 
+
   let box = document.querySelector(".container");
   let item = document.querySelector(".card");
 
   const btnprev = () => {
     let width = item.clientWidth;
-    box.scrollLeft = box.scrollLeft - width;
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? data.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
-    console.log(width);
+    box.scrollLeft = box.scrollLeft - width;console.log(width);
+    if(slideIndex !== 1){
+      setSlideIndex(slideIndex - 1)
+  }
+  else if (slideIndex === 1){
+      setSlideIndex(data?.length)
+  }
   };
 
   const btnnext = () => {
     let width = item.clientWidth;
     box.scrollLeft = box.scrollLeft + width;
     console.log(width);
-    const isLastSlide = currentIndex === data.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+    if(slideIndex !== data?.length){
+            setSlideIndex(slideIndex + 1)
+        } 
+        else if (slideIndex === data?.length){
+            setSlideIndex(1)
+        }
   };
 
-  const goToSlide = (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
+  const moveDot = index => {
+    setSlideIndex(index)
+}
 
   
   return (
@@ -77,17 +83,14 @@ const Main = () => {
           );
         })}
       </div>
-      <div className='dotcontainer'>
-        {data.map((slide, slideIndex) => (
-          <div
-            key={slideIndex}
-            onClick={() => goToSlide(slideIndex)}
-            className='dot'
-          >
-            <RxDotFilled />
-          </div>
-        ))}
-      </div>
+      <div className="container-dots">
+                {Array.from({length:data?.length}).map((item, index) => (
+                    <div 
+                    onClick={() => moveDot(index + 1)}
+                    className={slideIndex === index + 1 ? "dot active" : "dot"}
+                    ></div>
+                ))}
+     </div>
     </>
   );
 };
