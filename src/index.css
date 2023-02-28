@@ -75,21 +75,20 @@
   margin-top: 1rem;
 } 
 
-.dotcontainer{
+ .dotcontainer{
   display: flex;
   top: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   justify-content: center;
 }
-
 .dot{
   font-size: 1.5rem; /* 24px */
   line-height: 2rem; /* 32px */
   cursor: pointer;
- 
-
 }
+
+
 
 
 
