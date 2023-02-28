@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
+import { RxDotFilled } from 'react-icons/rx';
 import data from "../helper/data";
 
 const Main = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
   let box = document.querySelector(".container");
   let item = document.querySelector(".card");
 
   const btnprev = () => {
     let width = item.clientWidth;
     box.scrollLeft = box.scrollLeft - width;
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? data.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
     console.log(width);
   };
 
@@ -16,7 +22,16 @@ const Main = () => {
     let width = item.clientWidth;
     box.scrollLeft = box.scrollLeft + width;
     console.log(width);
+    const isLastSlide = currentIndex === data.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
   };
+
+  const goToSlide = (slideIndex) => {
+    setCurrentIndex(slideIndex);
+  };
+
+  
   return (
     <>
       <div className="header">
@@ -61,6 +76,17 @@ const Main = () => {
             </div>
           );
         })}
+      </div>
+      <div className='dotcontainer'>
+        {data.map((slide, slideIndex) => (
+          <div
+            key={slideIndex}
+            onClick={() => goToSlide(slideIndex)}
+            className='dot'
+          >
+            <RxDotFilled />
+          </div>
+        ))}
       </div>
     </>
   );
